@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/enemy_data.gd" id="0"]
+[ext_resource type="Texture2D" path="res://assets/sprites/enemies/great_drying.png" id="1"]
+[ext_resource type="Script" path="res://scripts/enemies/behaviors/great_drying_behavior.gd" id="2"]
+[ext_resource type="Resource" path="res://resources/projectiles/dust_orb.tres" id="3"]
+[ext_resource type="Resource" path="res://resources/enemies/dry_one.tres" id="4"]
+
+[sub_resource type="Resource" id="s0"]
+script = ExtResource("2")
+nova_projectile = ExtResource("3")
+summon = ExtResource("4")
+
+[resource]
+script = ExtResource("0")
+id = &"great_drying"
+display_name = "The Great Drying"
+texture = ExtResource("1")
+behavior = SubResource("s0")
+tier = 2
+max_health = 14000.0
+speed = 24.0
+damage = 26.0
+radius = 24.0
+knockback_resist = 1.0
+xp_value = 300
+coin_chance = 1.0
+anim_fps = 2.0
+death_color = Color(0.84, 0.59, 0.33, 1)

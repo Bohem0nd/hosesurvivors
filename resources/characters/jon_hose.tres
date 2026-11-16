@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/character_data.gd" id="0"]
+[ext_resource type="Texture2D" path="res://assets/sprites/characters/jon_hose.png" id="1"]
+[ext_resource type="Resource" path="res://resources/weapons/holy_hose.tres" id="2"]
+[ext_resource type="Script" path="res://scripts/player/passives/pressure_builds.gd" id="3"]
+
+[resource]
+script = ExtResource("0")
+id = &"jon_hose"
+display_name = "Jon Hose"
+title = "The Original"
+description = "A mountain of a man with an industrial hose and a calling. Where he walks, the dust settles."
+max_health = 100.0
+move_speed = 90.0
+damage_multiplier = 1.0
+passive_name = "Pressure Builds"
+passive_description = "Damage and knockback rise by 1% every 10 seconds survived (up to +60%)."
+sprite_sheet = ExtResource("1")
+starting_weapon = ExtResource("2")
+passive_script = ExtResource("3")
+passive_params = {"interval": 10.0, "step": 0.01, "cap": 0.6}
+implemented = true
+unlocked_by_default = true

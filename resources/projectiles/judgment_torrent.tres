@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ProjectileConfig" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/projectile_config.gd" id="0"]
+[ext_resource type="Texture2D" path="res://assets/sprites/weapons/judgment_torrent.png" id="1"]
+
+[resource]
+script = ExtResource("0")
+texture = ExtResource("1")
+speed = 380.0
+radius = 6.0
+lifetime = 0.6
+hit_color = Color(0.8, 0.95, 1, 1)
+hit_particles = 4
+hit_sfx = &"water_hit"
+leaves_puddle = true

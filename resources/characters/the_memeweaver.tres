@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/character_data.gd" id="0"]
+
+[resource]
+script = ExtResource("0")
+id = &"the_memeweaver"
+display_name = "The Memeweaver"
+title = "The Digital Sorcerer"
+description = "Legendary creator of Council of Hose memes."
+max_health = 80.0
+move_speed = 92.0
+damage_multiplier = 1.0
+passive_name = "Viral Spread"
+passive_description = "Attacks have a chance to duplicate and spread."
+weapon_preview = "Meme Barrage - enchanted homing memes."
+unlock_cost = 750
+unlock_hint = "Arrives in Phase 3: Hoseverse Expansion."

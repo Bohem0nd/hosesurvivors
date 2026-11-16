@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/upgrade_data.gd" id="0"]
+[ext_resource type="Script" path="res://scripts/data/stat_modifier.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/sprites/ui/icons/administrative_immunity.png" id="2"]
+
+[sub_resource type="Resource" id="s0"]
+script = ExtResource("1")
+stat = &"armor"
+mode = 0
+amount = 0.1
+
+[resource]
+script = ExtResource("0")
+id = &"administrative_immunity"
+display_name = "Administrative Immunity"
+description = "+10% damage resistance. Liability waived."
+icon = ExtResource("2")
+max_level = 5
+weight = 0.9
+modifiers = Array[ExtResource("1")]([SubResource("s0")])

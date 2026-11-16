@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/upgrade_data.gd" id="0"]
+[ext_resource type="Texture2D" path="res://assets/sprites/ui/icons/petty_cash.png" id="1"]
+
+[resource]
+script = ExtResource("0")
+id = &"petty_cash"
+display_name = "Petty Cash"
+description = "+25 Hose Coins. Do not ask where it came from."
+icon = ExtResource("1")
+max_level = 0
+coin_amount = 25
