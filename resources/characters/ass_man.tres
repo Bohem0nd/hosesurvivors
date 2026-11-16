@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/character_data.gd" id="0"]
+
+[resource]
+script = ExtResource("0")
+id = &"ass_man"
+display_name = "Ass Man"
+title = "The Glute Guardian"
+description = "Royal blue. Metallic gold. Unreasonable power."
+max_health = 130.0
+move_speed = 84.0
+damage_multiplier = 1.0
+passive_name = "Glute Force"
+passive_description = "Periodic shockwaves push enemies away."
+weapon_preview = "Cheek Clap - shockwaves that damage nearby enemies."
+unlock_cost = 500
+unlock_hint = "Arrives in Phase 3: Hoseverse Expansion."

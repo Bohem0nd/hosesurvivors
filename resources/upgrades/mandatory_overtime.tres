@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="UpgradeData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/upgrade_data.gd" id="0"]
+[ext_resource type="Script" path="res://scripts/data/stat_modifier.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/sprites/ui/icons/mandatory_overtime.png" id="2"]
+
+[sub_resource type="Resource" id="s0"]
+script = ExtResource("1")
+stat = &"attack_speed"
+mode = 1
+amount = 0.15
+
+[resource]
+script = ExtResource("0")
+id = &"mandatory_overtime"
+display_name = "Mandatory Overtime"
+description = "+15% attack speed. Nobody asked if you wanted to."
+icon = ExtResource("2")
+max_level = 5
+weight = 1.0
+modifiers = Array[ExtResource("1")]([SubResource("s0")])

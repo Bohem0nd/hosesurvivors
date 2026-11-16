@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/enemy_data.gd" id="0"]
+[ext_resource type="Texture2D" path="res://assets/sprites/enemies/bureaucrat.png" id="1"]
+[ext_resource type="Script" path="res://scripts/enemies/behaviors/chase_behavior.gd" id="2"]
+
+[sub_resource type="Resource" id="s0"]
+script = ExtResource("2")
+
+[resource]
+script = ExtResource("0")
+id = &"bureaucrat"
+display_name = "Corporate Bureaucrat"
+texture = ExtResource("1")
+behavior = SubResource("s0")
+tier = 1
+max_health = 380.0
+speed = 25.0
+damage = 18.0
+radius = 10.0
+knockback_resist = 0.8
+shield = 45.0
+shield_regen_delay = 4.0
+xp_value = 40
+coin_chance = 1.0
+drops_crate = true
+anim_fps = 3.0
+death_color = Color(0.24, 0.27, 0.38, 1)

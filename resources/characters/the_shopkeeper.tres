@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/character_data.gd" id="0"]
+
+[resource]
+script = ExtResource("0")
+id = &"the_shopkeeper"
+display_name = "The Shopkeeper"
+title = "The Supplier"
+description = "A friendly supplier of heroic equipment. Everything must go."
+max_health = 100.0
+move_speed = 88.0
+damage_multiplier = 0.9
+passive_name = "Employee Discount"
+passive_description = "Better shop prices and additional upgrade opportunities."
+weapon_preview = "Discount Arsenal - throws random merchandise."
+unlock_cost = 1000
+unlock_hint = "Arrives in Phase 3: Hoseverse Expansion."

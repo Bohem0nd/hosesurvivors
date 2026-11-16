@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="UpgradePool" load_steps=19 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/upgrade_pool.gd" id="0"]
+[ext_resource type="Script" path="res://scripts/data/weapon_data.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/upgrade_data.gd" id="2"]
+[ext_resource type="Resource" path="res://resources/weapons/holy_hose.tres" id="3"]
+[ext_resource type="Resource" path="res://resources/weapons/hose_of_judgment.tres" id="4"]
+[ext_resource type="Resource" path="res://resources/upgrades/industrial_pressure.tres" id="5"]
+[ext_resource type="Resource" path="res://resources/upgrades/mandatory_overtime.tres" id="6"]
+[ext_resource type="Resource" path="res://resources/upgrades/administrative_immunity.tres" id="7"]
+[ext_resource type="Resource" path="res://resources/upgrades/inbox_zero.tres" id="8"]
+[ext_resource type="Resource" path="res://resources/upgrades/hydration_nation.tres" id="9"]
+[ext_resource type="Resource" path="res://resources/upgrades/council_approval.tres" id="10"]
+[ext_resource type="Resource" path="res://resources/upgrades/unpaid_overtime.tres" id="11"]
+[ext_resource type="Resource" path="res://resources/upgrades/the_hose_must_flow.tres" id="12"]
+[ext_resource type="Resource" path="res://resources/upgrades/sprint_planning.tres" id="13"]
+[ext_resource type="Resource" path="res://resources/upgrades/protein_shake.tres" id="14"]
+[ext_resource type="Resource" path="res://resources/upgrades/magnetic_personality.tres" id="15"]
+[ext_resource type="Resource" path="res://resources/upgrades/coffee_break.tres" id="16"]
+[ext_resource type="Resource" path="res://resources/upgrades/petty_cash.tres" id="17"]
+
+[resource]
+script = ExtResource("0")
+weapons = Array[ExtResource("1")]([ExtResource("3"), ExtResource("4")])
+passives = Array[ExtResource("2")]([ExtResource("5"), ExtResource("6"), ExtResource("7"), ExtResource("8"), ExtResource("9"), ExtResource("10"), ExtResource("11"), ExtResource("12"), ExtResource("13"), ExtResource("14"), ExtResource("15")])
+fallbacks = Array[ExtResource("2")]([ExtResource("16"), ExtResource("17")])

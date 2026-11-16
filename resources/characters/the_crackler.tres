@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/character_data.gd" id="0"]
+
+[resource]
+script = ExtResource("0")
+id = &"the_crackler"
+display_name = "The Crackler"
+title = "The Electric Menace"
+description = "Leather jacket. Lightning bolt. Bad attitude, great conductivity."
+max_health = 85.0
+move_speed = 98.0
+damage_multiplier = 1.1
+passive_name = "Overcharged"
+passive_description = "Successive electric hits increase chain potential."
+weapon_preview = "Arc Discharge - electricity that jumps between enemies."
+unlock_cost = 500
+unlock_hint = "Arrives in Phase 3: Hoseverse Expansion."

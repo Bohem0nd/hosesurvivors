@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/weapon_data.gd" id="0"]
+[ext_resource type="Texture2D" path="res://assets/sprites/ui/icons/hose_of_judgment.png" id="1"]
+[ext_resource type="Script" path="res://scripts/weapons/hose_weapon.gd" id="2"]
+[ext_resource type="Resource" path="res://resources/projectiles/judgment_torrent.tres" id="3"]
+[ext_resource type="Texture2D" path="res://assets/sprites/weapons/hose_nozzle.png" id="4"]
+
+[resource]
+script = ExtResource("0")
+id = &"hose_of_judgment"
+display_name = "The Hose of Judgment"
+description = "A relentless high-pressure torrent that punches through entire formations. Judgment is wet."
+icon = ExtResource("1")
+behavior = ExtResource("2")
+tags = Array[StringName]([&"water"])
+projectile = ExtResource("3")
+visual_texture = ExtResource("4")
+damage = 13.0
+cooldown = 0.45
+projectile_count = 2
+attack_range = 215.0
+area = 1.4
+knockback = 110.0
+duration = 1.8
+pierce = 99
+max_level = 1
+is_evolution = true
+fire_sfx = &"hose_spray"
+params = {"stream_rate": 24.0, "fan_deg": 7.0, "jitter_deg": 3.0, "turn_rate": 7.0, "sweep_deg": 9.0, "shake": 1.2}

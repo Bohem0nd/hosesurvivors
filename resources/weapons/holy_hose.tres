@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/weapon_data.gd" id="0"]
+[ext_resource type="Texture2D" path="res://assets/sprites/ui/icons/holy_hose.png" id="1"]
+[ext_resource type="Script" path="res://scripts/weapons/hose_weapon.gd" id="2"]
+[ext_resource type="Resource" path="res://resources/projectiles/water_droplet.tres" id="3"]
+[ext_resource type="Texture2D" path="res://assets/sprites/weapons/hose_nozzle.png" id="4"]
+[ext_resource type="Resource" path="res://resources/weapons/hose_of_judgment.tres" id="5"]
+
+[resource]
+script = ExtResource("0")
+id = &"holy_hose"
+display_name = "The Holy Hose"
+description = "Sprays powerful jets of blessed water at the nearest enemy."
+icon = ExtResource("1")
+behavior = ExtResource("2")
+tags = Array[StringName]([&"water"])
+projectile = ExtResource("3")
+visual_texture = ExtResource("4")
+damage = 4.5
+cooldown = 0.9
+projectile_count = 1
+attack_range = 150.0
+area = 1.0
+knockback = 55.0
+duration = 0.5
+pierce = 1
+max_level = 8
+level_bonuses = Array[Dictionary]([{"desc": "+2 damage per droplet.", "damage": 2.0}, {"desc": "+1 water jet.", "projectile_count": 1}, {"desc": "Longer bursts and longer reach.", "duration": 0.4, "range": 0.15}, {"desc": "Droplets pierce +1 enemy. +2 damage.", "pierce": 1, "damage": 2.0}, {"desc": "20% faster recharge.", "cooldown": 0.8}, {"desc": "+3 damage. +30% knockback.", "damage": 3.0, "knockback": 0.3}, {"desc": "+1 water jet. Ready to evolve with Industrial Pressure.", "projectile_count": 1}])
+evolves_into = ExtResource("5")
+evolution_required_upgrade = &"industrial_pressure"
+fire_sfx = &"hose_spray"
+params = {"stream_rate": 26.0, "fan_deg": 14.0, "jitter_deg": 4.0, "turn_rate": 9.0, "sweep_deg": 6.0}

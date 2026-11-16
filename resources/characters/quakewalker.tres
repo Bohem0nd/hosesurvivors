@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/character_data.gd" id="0"]
+
+[resource]
+script = ExtResource("0")
+id = &"quakewalker"
+display_name = "Quakewalker"
+title = "The Seismic Stride"
+description = "Stern. Heavy boots. The ground files a complaint with every step."
+max_health = 120.0
+move_speed = 80.0
+damage_multiplier = 1.0
+passive_name = "Heavy Footed"
+passive_description = "Movement generates seismic energy."
+weapon_preview = "Seismic Step - every few steps triggers an earthquake."
+unlock_cost = 750
+unlock_hint = "Arrives in Phase 3: Hoseverse Expansion."

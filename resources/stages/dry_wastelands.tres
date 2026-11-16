@@ -1,0 +1,115 @@
+[gd_resource type="Resource" script_class="StageData" load_steps=24 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/stage_data.gd" id="0"]
+[ext_resource type="Script" path="res://scripts/data/spawn_wave.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/stage_event.gd" id="2"]
+[ext_resource type="Resource" path="res://resources/enemies/dry_one.tres" id="3"]
+[ext_resource type="Resource" path="res://resources/enemies/unregistered_hours.tres" id="4"]
+[ext_resource type="Resource" path="res://resources/enemies/thirsty.tres" id="5"]
+[ext_resource type="Resource" path="res://resources/enemies/bureaucrat.tres" id="6"]
+[ext_resource type="Resource" path="res://resources/enemies/great_drying.tres" id="7"]
+[ext_resource type="Texture2D" path="res://assets/sprites/environment/wasteland_ground.png" id="8"]
+[ext_resource type="Texture2D" path="res://assets/sprites/environment/dead_bush.png" id="9"]
+[ext_resource type="Texture2D" path="res://assets/sprites/environment/broken_pipe.png" id="10"]
+[ext_resource type="Texture2D" path="res://assets/sprites/environment/barrel.png" id="11"]
+[ext_resource type="Texture2D" path="res://assets/sprites/environment/monument.png" id="12"]
+[ext_resource type="Texture2D" path="res://assets/sprites/environment/skull.png" id="13"]
+[ext_resource type="AudioStream" path="res://assets/audio/music/wasteland_loop.wav" id="14"]
+
+[sub_resource type="Resource" id="s0"]
+script = ExtResource("1")
+enemy = ExtResource("3")
+start_time = 0.0
+end_time = 600.0
+interval_start = 0.7
+interval_end = 0.2
+count_start = 1
+count_end = 5
+
+[sub_resource type="Resource" id="s1"]
+script = ExtResource("1")
+enemy = ExtResource("4")
+start_time = 60.0
+end_time = 600.0
+interval_start = 8.0
+interval_end = 3.0
+count_start = 6
+count_end = 18
+cluster = true
+
+[sub_resource type="Resource" id="s2"]
+script = ExtResource("1")
+enemy = ExtResource("5")
+start_time = 150.0
+end_time = 600.0
+interval_start = 2.5
+interval_end = 0.45
+count_start = 1
+count_end = 4
+
+[sub_resource type="Resource" id="s3"]
+script = ExtResource("2")
+time = 180.0
+enemy = ExtResource("6")
+count = 1
+announcement = "ELITE INCOMING"
+subtitle = "A Corporate Bureaucrat would like a word."
+sfx = &"elite_intro"
+
+[sub_resource type="Resource" id="s4"]
+script = ExtResource("2")
+time = 300.0
+enemy = ExtResource("4")
+count = 44
+pattern = 1
+announcement = "TIMESHEET AUDIT"
+subtitle = "Your Unregistered Hours have found you."
+sfx = &"elite_intro"
+
+[sub_resource type="Resource" id="s5"]
+script = ExtResource("2")
+time = 360.0
+enemy = ExtResource("6")
+count = 1
+announcement = "ELITE INCOMING"
+subtitle = "Per my last email..."
+sfx = &"elite_intro"
+
+[sub_resource type="Resource" id="s6"]
+script = ExtResource("2")
+time = 480.0
+enemy = ExtResource("6")
+count = 2
+announcement = "MIDDLE MANAGEMENT"
+subtitle = "Two Bureaucrats. One agenda."
+sfx = &"elite_intro"
+
+[sub_resource type="Resource" id="s7"]
+script = ExtResource("2")
+time = 540.0
+enemy = ExtResource("5")
+count = 36
+pattern = 1
+announcement = "LAST CALL"
+subtitle = "The Thirsty close in from every side."
+sfx = &"elite_intro"
+
+[resource]
+script = ExtResource("0")
+id = &"dry_wastelands"
+display_name = "The Dry Wastelands"
+description = "A devastated landscape where water has disappeared and the Dry Ones roam."
+duration = 600.0
+max_enemies = 350
+ground_texture = ExtResource("8")
+decor = Array[Texture2D]([ExtResource("9"), ExtResource("10"), ExtResource("11"), ExtResource("12"), ExtResource("13")])
+decor_weights = Array[float]([5.0, 2.0, 2.0, 0.6, 2.5])
+decor_per_chunk = 4
+music = ExtResource("14")
+waves = Array[ExtResource("1")]([SubResource("s0"), SubResource("s1"), SubResource("s2")])
+events = Array[ExtResource("2")]([SubResource("s3"), SubResource("s4"), SubResource("s5"), SubResource("s6"), SubResource("s7")])
+final_boss = ExtResource("7")
+boss_announcement = "THE GREAT DRYING"
+boss_subtitle = "WARNING - Absolute dryness approaches."
+health_scale_per_minute = 0.32
+damage_scale_per_minute = 0.08

@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/enemy_data.gd" id="0"]
+[ext_resource type="Texture2D" path="res://assets/sprites/enemies/thirsty.png" id="1"]
+[ext_resource type="Script" path="res://scripts/enemies/behaviors/accelerate_near_behavior.gd" id="2"]
+
+[sub_resource type="Resource" id="s0"]
+script = ExtResource("2")
+trigger_radius = 95.0
+speed_multiplier = 2.5
+ramp_time = 0.5
+
+[resource]
+script = ExtResource("0")
+id = &"thirsty"
+display_name = "The Thirsty"
+texture = ExtResource("1")
+behavior = SubResource("s0")
+max_health = 24.0
+speed = 29.0
+damage = 11.0
+radius = 6.0
+xp_value = 3
+coin_chance = 0.05
+death_color = Color(0.61, 0.44, 0.57, 1)

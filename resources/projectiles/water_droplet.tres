@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="ProjectileConfig" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/projectile_config.gd" id="0"]
+[ext_resource type="Texture2D" path="res://assets/sprites/weapons/water_droplet.png" id="1"]
+
+[resource]
+script = ExtResource("0")
+texture = ExtResource("1")
+speed = 320.0
+radius = 4.0
+lifetime = 0.5
+hit_color = Color(0.45, 0.75, 1, 1)
+hit_particles = 3
+hit_sfx = &"water_hit"
+leaves_puddle = true
