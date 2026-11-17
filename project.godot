@@ -21,6 +21,7 @@ SaveManager="*res://scripts/autoload/save_manager.gd"
 AudioManager="*res://scripts/autoload/audio_manager.gd"
 RunState="*res://scripts/autoload/run_state.gd"
 UiTheme="*res://scripts/autoload/ui_theme.gd"
+Device="*res://scripts/autoload/device.gd"
 Router="*res://scripts/autoload/router.gd"
 
 [display]

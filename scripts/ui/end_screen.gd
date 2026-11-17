@@ -27,15 +27,17 @@ func open(victory: bool, coins_before: int) -> void:
 	root.theme = UiTheme.theme  # themes do not propagate through CanvasLayers
 	add_child(root)
 	root.add_child(MenuHelpers.dim(0.82))
+	var frame := MenuHelpers.frame()
+	root.add_child(frame)
 	var color := UiTheme.BRASS if victory else UiTheme.DANGER
-	root.add_child(MenuHelpers.centered_label("THE HOSE PREVAILS" if victory else "YOU GOT HOSED", 48, 24, color, true))
+	frame.add_child(MenuHelpers.centered_label("THE HOSE PREVAILS" if victory else "YOU GOT HOSED", 48, 24, color, true))
 	var quips := VICTORY_QUIPS if victory else DEFEAT_QUIPS
-	root.add_child(MenuHelpers.centered_label(quips.pick_random(), 82, 8, UiTheme.TEXT_DIM))
+	frame.add_child(MenuHelpers.centered_label(quips.pick_random(), 82, 8, UiTheme.TEXT_DIM))
 
 	var panel := PanelContainer.new()
 	panel.position = Vector2(200, 108)
 	panel.custom_minimum_size = Vector2(240, 0)
-	root.add_child(panel)
+	frame.add_child(panel)
 	var grid := GridContainer.new()
 	grid.columns = 2
 	grid.add_theme_constant_override("h_separation", 40)
@@ -53,7 +55,7 @@ func open(victory: bool, coins_before: int) -> void:
 	box.size = Vector2(640, 20)
 	box.alignment = BoxContainer.ALIGNMENT_CENTER
 	box.add_theme_constant_override("separation", 10)
-	root.add_child(box)
+	frame.add_child(box)
 	var retry := MenuHelpers.button("HOSE AGAIN", func() -> void: Router.start_run(RunState.character, RunState.stage))
 	box.add_child(retry)
 	box.add_child(MenuHelpers.button("MAIN MENU", Router.goto_menu))

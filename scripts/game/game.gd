@@ -108,7 +108,12 @@ func _build_ui() -> void:
 	var vignette := TextureRect.new()
 	vignette.texture = VIGNETTE
 	vignette.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	vignette.set_anchors_preset(Control.PRESET_FULL_RECT)
+	vignette.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	vignette.stretch_mode = TextureRect.STRETCH_SCALE
 	overlay.add_child(vignette)
+
+	add_child(TouchControls.new())
 
 	hud = Hud.new()
 	add_child(hud)
@@ -121,6 +126,7 @@ func _build_ui() -> void:
 	pause_menu = PauseMenu.new()
 	add_child(pause_menu)
 	pause_menu.can_pause = func() -> bool: return RunState.active and not _choosing and not _ending
+	hud.pause_pressed.connect(pause_menu.request_open)
 
 
 func _process(delta: float) -> void:

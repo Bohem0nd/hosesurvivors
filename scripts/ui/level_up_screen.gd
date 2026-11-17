@@ -27,22 +27,24 @@ func _ready() -> void:
 	dim.color = Color(0.02, 0.02, 0.06, 0.72)
 	dim.set_anchors_preset(Control.PRESET_FULL_RECT)
 	_root.add_child(dim)
+	var frame := MenuHelpers.frame()
+	_root.add_child(frame)
 	_title = UiTheme.label("LEVEL UP!", 24, UiTheme.BRASS, true)
 	_title.position = Vector2(0, 50)
 	_title.size = Vector2(640, 26)
 	_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_root.add_child(_title)
+	frame.add_child(_title)
 	_subtitle = UiTheme.label("", 8, UiTheme.WATER_LIGHT)
 	_subtitle.position = Vector2(0, 82)
 	_subtitle.size = Vector2(640, 10)
 	_subtitle.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_root.add_child(_subtitle)
+	frame.add_child(_subtitle)
 	_cards = HBoxContainer.new()
 	_cards.add_theme_constant_override("separation", 12)
 	_cards.alignment = BoxContainer.ALIGNMENT_CENTER
 	_cards.position = Vector2(0, 110)
 	_cards.size = Vector2(640, CARD_SIZE.y)
-	_root.add_child(_cards)
+	frame.add_child(_cards)
 
 
 func open(offers: Array[UpgradeOffer], title: String, subtitle: String) -> void:

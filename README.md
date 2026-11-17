@@ -33,11 +33,17 @@ godot
 
 ### Controls
 
-| Action | Keyboard | Gamepad |
-|---|---|---|
-| Move | WASD / arrow keys | Left stick / d-pad |
-| Pause | Esc / P | Start |
-| Menus | Arrows + Enter, or mouse | Stick/d-pad + A |
+| Action | Keyboard | Gamepad | Touch (phones / tablets) |
+|---|---|---|---|
+| Move | WASD / arrow keys | Left stick / d-pad | Put a finger down anywhere and drag |
+| Pause | Esc / P | Start | **II** button, top right |
+| Menus | Arrows + Enter, or mouse | Stick/d-pad + A | Tap |
+
+On phones and tablets, play in landscape. The game fills the screen whatever its
+shape: wider or taller screens show more of the world around Jon. It pauses by
+itself if you switch apps or rotate to portrait. In a browser, **FULLSCREEN** on the
+title screen hides the browser bars (not supported on iPhone; there, *Add to Home
+Screen* from Safari's share menu gives a full-screen icon instead).
 
 Weapons fire on their own. Collect the blue droplets. Stay hydrated.
 

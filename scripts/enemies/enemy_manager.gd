@@ -132,6 +132,9 @@ func _process(delta: float) -> void:
 	var player := ctx.player
 	var player_pos := player.position
 	var player_radius := player.radius
+	# Keep the wrap-around ring just off-screen, however much of the world is visible.
+	var respawn_distance := maxf(RESPAWN_DISTANCE, Device.view_size().length() * 0.5 + 24.0)
+	var despawn_distance := maxf(DESPAWN_DISTANCE, respawn_distance + 160.0)
 	var n := active.size()
 	var i := 0
 	while i < n:
@@ -189,8 +192,8 @@ func _process(delta: float) -> void:
 			player.take_damage(enemy.damage)
 
 		# Left far behind? Wrap back to the spawn ring instead of wasting a slot.
-		if dist > DESPAWN_DISTANCE and enemy.data.tier != EnemyData.Tier.BOSS:
-			enemy.position = player_pos + Vector2.from_angle(randf() * TAU) * RESPAWN_DISTANCE
+		if dist > despawn_distance and enemy.data.tier != EnemyData.Tier.BOSS:
+			enemy.position = player_pos + Vector2.from_angle(randf() * TAU) * respawn_distance
 
 	grid.clear()
 	for enemy in active:

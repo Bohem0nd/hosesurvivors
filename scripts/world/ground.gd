@@ -27,7 +27,7 @@ func setup(stage: StageData, camera: Node2D, decor_parent: Node2D) -> void:
 	_tile.texture_repeat = CanvasItem.TEXTURE_REPEAT_ENABLED
 	_tile.region_enabled = true
 	_tile.modulate = stage.ground_tint
-	var tiles := (Vector2(640.0, 360.0) / _tile_size).ceil() + Vector2(2.0, 2.0)
+	var tiles := (Device.MAX_VIEW / _tile_size).ceil() + Vector2(2.0, 2.0)
 	_tile.region_rect = Rect2(Vector2.ZERO, tiles * _tile_size)
 	add_child(_tile)
 	for i in stage.decor.size():

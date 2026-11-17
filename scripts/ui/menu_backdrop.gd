@@ -8,7 +8,7 @@ var _scroll: float = 0.0
 
 
 func _ready() -> void:
-	set_anchors_preset(Control.PRESET_FULL_RECT)
+	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 
@@ -19,8 +19,10 @@ func _process(delta: float) -> void:
 
 func _draw() -> void:
 	var off := floorf(_scroll)
-	for y in range(-1, 4):
-		for x in range(-1, 6):
+	var tiles := (size / 128.0).ceil()
+	for y in range(-1, int(tiles.y) + 1):
+		for x in range(-1, int(tiles.x) + 1):
 			draw_texture(GROUND, Vector2(x * 128.0 + off, y * 128.0 + off * 0.5), Color(0.62, 0.58, 0.66))
-	draw_texture(VIGNETTE, Vector2.ZERO)
-	draw_texture(VIGNETTE, Vector2.ZERO)
+	var rect := Rect2(Vector2.ZERO, size)
+	draw_texture_rect(VIGNETTE, rect, false)
+	draw_texture_rect(VIGNETTE, rect, false)

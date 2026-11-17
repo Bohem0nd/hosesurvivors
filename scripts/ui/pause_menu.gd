@@ -1,6 +1,6 @@
 class_name PauseMenu
 extends CanvasLayer
-## ESC / Start pause menu.
+## ESC / Start / on-screen pause menu. Also opens on its own when the app loses focus.
 
 const QUIPS := [
 	"This meeting could have been an email.",
@@ -25,17 +25,32 @@ func _ready() -> void:
 	_root.theme = UiTheme.theme  # themes do not propagate through CanvasLayers
 	add_child(_root)
 	_root.add_child(MenuHelpers.dim())
-	_root.add_child(MenuHelpers.centered_label("PAUSED", 90, 24, UiTheme.BRASS, true))
+	var frame := MenuHelpers.frame()
+	_root.add_child(frame)
+	frame.add_child(MenuHelpers.centered_label("PAUSED", 90, 24, UiTheme.BRASS, true))
 	_quip = MenuHelpers.centered_label("", 124, 8, UiTheme.TEXT_DIM)
-	_root.add_child(_quip)
+	frame.add_child(_quip)
 	var box := VBoxContainer.new()
 	box.position = Vector2(245, 150)
 	box.add_theme_constant_override("separation", 6)
-	_root.add_child(box)
+	frame.add_child(box)
 	_resume = MenuHelpers.button("RESUME", close)
 	box.add_child(_resume)
 	box.add_child(MenuHelpers.button("RESTART RUN", func() -> void: Router.start_run(RunState.character, RunState.stage)))
 	box.add_child(MenuHelpers.button("QUIT TO MENU", Router.goto_menu))
+	Device.orientation_blocked.connect(request_open)
+
+
+## Pause if allowed: the HUD pause button, the app losing focus, a phone turned to portrait.
+func request_open() -> void:
+	if not visible and can_pause.is_valid() and can_pause.call():
+		open()
+
+
+func _notification(what: int) -> void:
+	# Switching apps or tabs on a phone shouldn't cost the run.
+	if what == NOTIFICATION_APPLICATION_FOCUS_OUT or what == NOTIFICATION_APPLICATION_PAUSED:
+		request_open()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -43,8 +58,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if visible:
 		close()
-	elif can_pause.is_valid() and can_pause.call():
-		open()
+	else:
+		request_open()
 	get_viewport().set_input_as_handled()
 
 

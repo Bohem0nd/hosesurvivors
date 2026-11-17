@@ -1,5 +1,21 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+- Mobile and tablet support for the web build:
+  - Floating virtual joystick (touch anywhere, drag to move) and an on-screen pause button.
+  - The viewport adapts to the screen's shape (from 640×360 up to 864×480), so phones
+    and tablets have no black bars. Desktop keeps integer pixel scaling.
+  - HUD pinned to the screen edges; menus stay centred.
+  - Bigger buttons and touch hints when playing by touch. On character select, a tap
+    selects a hero and BEGIN HOSING starts the run.
+  - Auto-pause when the app loses focus or the device is rotated to portrait, plus a
+    "rotate your device" prompt.
+  - FULLSCREEN button on the web title screen; mobile web-app meta tags; no page
+    bounce, text selection or long-press menus.
+- Touch tests (`tests/unit/test_touch.gd`) and a `--touch` flag for the screenshot tool.
+
 ## [0.1.0] — Phase 1: playable vertical slice
 
 ### Added
