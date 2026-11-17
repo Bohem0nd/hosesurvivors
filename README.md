@@ -5,7 +5,17 @@ Survive ten minutes in The Dry Wastelands, evolve the Holy Hose, and stop the Gr
 
 **Status:** v0.1.0 — Phase 1 vertical slice (playable start to finish, placeholder art and audio).
 
-## Run the game
+## Play in your browser
+
+The game is built and published to GitHub Pages automatically on every push to `main`:
+**https://bohem0nd.github.io/hosesurvivors/**
+
+One-time setup (repo owner): **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+After that, each push to `main` runs `.github/workflows/deploy-web.yml`, which exports the
+`Web` preset from `export_presets.cfg` with Godot 4.6.3 and deploys it. You can also run it
+by hand from the **Actions** tab (*Deploy web build → Run workflow*).
+
+## Run the game locally
 
 1. Install [Godot 4.6](https://godotengine.org/download) (standard build; 4.4+ should also work).
 2. Open the Godot project manager → **Import** → select this folder's `project.godot`.
