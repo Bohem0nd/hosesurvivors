@@ -3,7 +3,6 @@ extends Node
 ## Turns StageData (waves + scripted events + final boss) into enemy spawns,
 ## and ramps enemy health/damage over time.
 
-const VIEW_HALF := Vector2(320.0, 180.0)
 const SPAWN_MARGIN := 24.0
 const BOSS_PHASE_INTERVAL_SCALE := 2.5
 
@@ -70,10 +69,11 @@ func _run_event(event: StageEvent) -> void:
 	AudioManager.play(event.sfx)
 	match event.pattern:
 		StageEvent.Pattern.ENCIRCLE:
+			var view_half := _view_half()
 			for i in event.count:
 				var ang := TAU * float(i) / float(event.count)
 				ctx.enemies.spawn(event.enemy, ctx.player.position
-						+ Vector2(cos(ang) * (VIEW_HALF.x + 30.0), sin(ang) * (VIEW_HALF.y + 30.0)))
+						+ Vector2(cos(ang) * (view_half.x + 30.0), sin(ang) * (view_half.y + 30.0)))
 		_:
 			for i in event.count:
 				ctx.enemies.spawn(event.enemy, edge_position())
@@ -87,15 +87,20 @@ func _spawn_boss() -> void:
 	Events.announcement.emit(stage.boss_announcement, stage.boss_subtitle, true)
 	AudioManager.play(&"boss_intro")
 	ctx.camera.shake(5.0)
-	ctx.enemies.spawn(stage.final_boss, ctx.player.position + Vector2(0.0, -(VIEW_HALF.y + 40.0)))
+	ctx.enemies.spawn(stage.final_boss, ctx.player.position + Vector2(0.0, -(_view_half().y + 40.0)))
 
 
 ## A random point just outside the visible screen around the player.
 func edge_position() -> Vector2:
-	var half := VIEW_HALF + Vector2(SPAWN_MARGIN, SPAWN_MARGIN)
+	var half := _view_half() + Vector2(SPAWN_MARGIN, SPAWN_MARGIN)
 	var p: Vector2
 	if randf() < half.x / (half.x + half.y):
 		p = Vector2(randf_range(-half.x, half.x), half.y * (1.0 if randf() < 0.5 else -1.0))
 	else:
 		p = Vector2(half.x * (1.0 if randf() < 0.5 else -1.0), randf_range(-half.y, half.y))
 	return ctx.player.position + p
+
+
+## Half the visible area; wider or taller screens see more of the world (see Device).
+func _view_half() -> Vector2:
+	return Device.view_size() * 0.5

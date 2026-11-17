@@ -2,7 +2,10 @@ extends Node
 ## Captures screenshots of any scene for visual review (needs a display, e.g. xvfb-run).
 ##
 ##   xvfb-run -a godot --fixed-fps 60 res://tests/screenshot.tscn -- \
-##       --scene=res://scenes/game.tscn --at=5,30,90 --out=/tmp/shots [--god] [--bot=kite|wander|idle] [--skip-to=590] [--hold-levelup] [--pause-at-end]
+##       --scene=res://scenes/game.tscn --at=5,30,90 --out=/tmp/shots [--god] [--bot=kite|wander|idle] [--skip-to=590] [--hold-levelup] [--pause-at-end] [--touch]
+##
+## Add --resolution=WxH (a Godot flag, before --) to check other screen shapes; --touch
+## switches to the touch layout (pause button, bigger buttons, joystick hint).
 ##
 ## In the game scene a bot plays and auto-picks upgrades.
 
@@ -39,6 +42,8 @@ func _ready() -> void:
 			bot = arg.get_slice("=", 1)
 		elif arg == "--pause-at-end":
 			pause_at_end = true
+		elif arg == "--touch":
+			Device._set_touch_mode(true)
 		elif arg == "--hold-levelup":
 			hold_levelup = true
 	SaveManager.persist = false

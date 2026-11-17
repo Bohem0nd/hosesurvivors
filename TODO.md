@@ -27,6 +27,7 @@
 - [ ] Difficulty pass — bots show the run is completable and losable, not that it is *fun*
 - [ ] Listen to the placeholder audio mix (never played through real speakers)
 - [ ] Gamepad test on real hardware
+- [ ] Play on a real phone and tablet (tested only in an emulated Pixel 7 in headless Chromium)
 - [ ] Frame-time profile with a GPU at 300+ enemies
 - [ ] Install export templates and produce a Windows build
 

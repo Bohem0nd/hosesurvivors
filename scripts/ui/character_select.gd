@@ -22,19 +22,21 @@ var _selected: CharacterData
 
 func _ready() -> void:
 	add_child(MenuBackdrop.new())
-	add_child(MenuHelpers.centered_label("CHOOSE YOUR HERO", 14, 24, UiTheme.BRASS, true))
+	var frame := MenuHelpers.frame()
+	add_child(frame)
+	frame.add_child(MenuHelpers.centered_label("CHOOSE YOUR HERO", 14, 24, UiTheme.BRASS, true))
 
 	var grid := GridContainer.new()
 	grid.columns = 3
 	grid.position = Vector2(20, 52)
 	grid.add_theme_constant_override("h_separation", 6)
 	grid.add_theme_constant_override("v_separation", 6)
-	add_child(grid)
+	frame.add_child(grid)
 
 	var panel := PanelContainer.new()
 	panel.position = Vector2(326, 52)
 	panel.custom_minimum_size = Vector2(294, 214)
-	add_child(panel)
+	frame.add_child(panel)
 	var v := VBoxContainer.new()
 	v.add_theme_constant_override("separation", 6)
 	panel.add_child(v)
@@ -50,7 +52,7 @@ func _ready() -> void:
 	var buttons := HBoxContainer.new()
 	buttons.position = Vector2(326, 286)
 	buttons.add_theme_constant_override("separation", 8)
-	add_child(buttons)
+	frame.add_child(buttons)
 	_start = MenuHelpers.button("BEGIN HOSING", func() -> void: Router.start_run(_selected), 160)
 	buttons.add_child(_start)
 	buttons.add_child(MenuHelpers.button("BACK", Router.goto_menu, 80))
@@ -81,7 +83,9 @@ func _make_card(character: CharacterData) -> Button:
 	card.focus_entered.connect(_show.bind(character))
 	card.mouse_entered.connect(card.grab_focus)
 	card.pressed.connect(func() -> void:
-		if _playable(character):
+		# On touch the tap that selects a hero would also start the run before the
+		# player could read about them; there, BEGIN HOSING starts it instead.
+		if _playable(character) and not Device.touch_mode:
 			AudioManager.play(&"ui_select")
 			Router.start_run(character))
 
