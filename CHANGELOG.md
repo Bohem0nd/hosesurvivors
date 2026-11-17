@@ -16,6 +16,13 @@
     bounce, text selection or long-press menus.
 - Touch tests (`tests/unit/test_touch.gd`) and a `--touch` flag for the screenshot tool.
 
+### Fixed
+- Phones held upright could get stuck on the "rotate your device" screen, for example
+  Samsung phones with auto-rotate switched off. Tapping it now asks the browser for
+  fullscreen landscape (works on Android even with rotation locked) and otherwise lets
+  you play letterboxed. Nearly square screens (an unfolded Galaxy Z Fold) are no longer
+  treated as portrait.
+
 ## [0.1.0] — Phase 1: playable vertical slice
 
 ### Added
