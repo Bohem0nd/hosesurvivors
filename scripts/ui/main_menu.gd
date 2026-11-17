@@ -46,7 +46,8 @@ func _ready() -> void:
 	add_child(box)
 	var start := MenuHelpers.button("START RUN", Router.goto_character_select)
 	box.add_child(start)
-	box.add_child(MenuHelpers.button("QUIT", func() -> void: get_tree().quit()))
+	if not OS.has_feature("web"):  # a browser tab can't be closed from the game
+		box.add_child(MenuHelpers.button("QUIT", func() -> void: get_tree().quit()))
 	start.grab_focus.call_deferred()
 
 	var stats := PanelContainer.new()
