@@ -71,3 +71,13 @@ func test_view_stays_in_bounds() -> void:
 	var view := Device.view_size()
 	check(view.x >= Device.BASE.x and view.y >= Device.BASE.y, "view covers the design area")
 	check(view.x <= Device.MAX_VIEW.x and view.y <= Device.MAX_VIEW.y, "view is capped")
+
+
+func test_rotate_prompt_is_never_a_dead_end() -> void:
+	Device.portrait = true
+	Device._overlay.visible = true
+	Device.dismiss_portrait_prompt()
+	check(not Device._overlay.visible, "tapping the rotate prompt lets you play")
+	check(not Device.portrait, "dismissed prompt stays away")
+	Device._portrait_dismissed = false
+	Device._fit()

@@ -7,7 +7,11 @@ extends Node
 ##   so the game fills the whole display.
 ## - Tracks whether the player is using touch (`touch_mode`), so screens can show
 ##   touch controls, bigger buttons and touch hints.
-## - Shows a "rotate your device" prompt on touch screens held in portrait.
+## - Shows a "rotate your device" prompt on touch screens held clearly in portrait.
+##   Tapping it goes fullscreen and locks landscape where the browser allows that
+##   (Android), which also works with the phone's auto-rotate switched off. If the
+##   screen still isn't landscape, the game is played letterboxed instead: the prompt
+##   must never be a dead end.
 
 signal touch_mode_changed(enabled: bool)
 ## Emitted when a touch device is turned to portrait (the game should pause).
@@ -15,11 +19,22 @@ signal orientation_blocked
 
 const BASE := Vector2(640.0, 360.0)
 const MAX_VIEW := Vector2(864.0, 480.0)
+## Height/width ratio above which a touch screen counts as portrait. Leaves nearly
+## square screens (an unfolded Galaxy Z Fold, some tablets) playable.
+const PORTRAIT_RATIO := 1.2
+const LANDSCAPE_JS := """(async () => {
+	try {
+		if (!document.fullscreenElement) await document.documentElement.requestFullscreen({ navigationUI: 'hide' });
+		await screen.orientation.lock('landscape');
+	} catch (e) { console.log('Landscape lock unavailable: ' + e); }
+})();"""
 
 var touch_mode: bool = false
 var portrait: bool = false
 
 var _overlay: CanvasLayer
+## Set once the player has tapped through the rotate prompt; it stays away after that.
+var _portrait_dismissed: bool = false
 
 
 func _ready() -> void:
@@ -65,7 +80,7 @@ func _fit() -> void:
 			else Window.CONTENT_SCALE_STRETCH_FRACTIONAL
 
 	var was_portrait := portrait
-	portrait = touch_mode and win.y > win.x
+	portrait = touch_mode and win.y > win.x * PORTRAIT_RATIO and not _portrait_dismissed
 	_overlay.visible = portrait
 	if portrait and not was_portrait:
 		orientation_blocked.emit()
@@ -80,6 +95,7 @@ func _build_overlay() -> void:
 	root.set_anchors_preset(Control.PRESET_FULL_RECT)
 	root.theme = UiTheme.theme
 	_overlay.add_child(root)  # mouse_filter STOP: swallows taps while shown
+	root.gui_input.connect(_on_overlay_input)
 	var bg := ColorRect.new()
 	bg.color = UiTheme.INK
 	bg.set_anchors_preset(Control.PRESET_FULL_RECT)
@@ -92,8 +108,24 @@ func _build_overlay() -> void:
 	box.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	root.add_child(box)
 	for line: Array in [["ROTATE YOUR", 24, UiTheme.BRASS, true], ["DEVICE", 24, UiTheme.BRASS, true],
-			["Jon Hose only fights in landscape.", 16, UiTheme.TEXT, false]]:
+			["Jon Hose only fights in landscape.", 16, UiTheme.TEXT, false],
+			["TAP TO PLAY", 16, UiTheme.WATER_LIGHT, true]]:
 		var l := UiTheme.label(line[0], line[1], line[2], line[3])
 		l.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		l.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 		box.add_child(l)
+
+
+func _on_overlay_input(event: InputEvent) -> void:
+	var tapped: bool = (event is InputEventMouseButton or event is InputEventScreenTouch) \
+			and not event.is_pressed()
+	if tapped:
+		dismiss_portrait_prompt()
+
+
+## Ask the browser for fullscreen landscape, and stop showing the prompt either way.
+func dismiss_portrait_prompt() -> void:
+	if OS.has_feature("web"):
+		JavaScriptBridge.eval(LANDSCAPE_JS, true)
+	_portrait_dismissed = true
+	_fit()
